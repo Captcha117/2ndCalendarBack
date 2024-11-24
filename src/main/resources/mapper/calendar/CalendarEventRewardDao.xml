@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.oken1.modules.calendar.dao.CalendarEventRewardDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.oken1.modules.calendar.entity.CalendarEventRewardEntity" id="calendarEventRewardMap">
+        <result property="id" column="id"/>
+        <result property="eventId" column="event_id"/>
+        <result property="rewardCode" column="reward_code"/>
+        <result property="rewardNum" column="reward_num"/>
+    </resultMap>
+
+
+</mapper>

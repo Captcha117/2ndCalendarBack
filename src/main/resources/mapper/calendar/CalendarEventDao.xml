@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.oken1.modules.calendar.dao.CalendarEventDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.oken1.modules.calendar.entity.CalendarEventEntity" id="calendarEventMap">
+        <result property="id" column="id"/>
+        <result property="gameId" column="game_id"/>
+        <result property="name" column="name"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="platformCode" column="platform_code"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="detailUrl" column="detail_url"/>
+        <result property="eventUrl" column="event_url"/>
+        <result property="tip" column="tip"/>
+    </resultMap>
+
+    <!--活动列表-->
+    <select id="getEventList" resultType="map">
+        SELECT id,
+        game_id,
+        name,
+        start_time,
+        end_time,
+        platform_code,
+        category_id,
+        img_url,
+        detail_url,
+        event_url,
+        tip
+        FROM calendar_event e
+        where 1=1
+        and e.END_TIME >= DATE_ADD( CURRENT_time(), INTERVAL -3 DAY ) and e.game_id in
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+        ORDER BY e.end_time
+    </select>
+</mapper>

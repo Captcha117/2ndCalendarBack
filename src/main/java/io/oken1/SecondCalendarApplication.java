@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SecondCalendarApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SecondCalendarApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SecondCalendarApplication.class, args);
+    }
 
 }

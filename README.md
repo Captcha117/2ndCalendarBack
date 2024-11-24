@@ -1,6 +1,6 @@
 ## SecondCalendar-back
-- 哔哩哔哩音游数据站 - 后台
-- 本项目基于[renren-fast](https://gitee.com/renrenio/renren-fast)进行改造而成
+- SecondCalendar - 后台
+- 本项目基于[renren-fast](https://gitee.com/renrenio/renren-fast)改造而成
 - 目前仍处于开发阶段
 
 **项目结构** 
