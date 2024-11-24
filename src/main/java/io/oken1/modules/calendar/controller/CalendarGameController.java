@@ -1,6 +1,8 @@
 package io.oken1.modules.calendar.controller;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
@@ -90,4 +92,14 @@ public class CalendarGameController {
         return R.ok();
     }
 
+    /**
+     * 列表
+     */
+    @ApiOperation("游戏列表")
+    @GetMapping("/gameList")
+    public R gameList() {
+        List<LinkedHashMap> data = calendarGameService.getGameList();
+
+        return R.ok().put("data", data);
+    }
 }
