@@ -18,9 +18,28 @@
         <result property="tip" column="tip"/>
     </resultMap>
 
+    <resultMap id="EventResultMap" type="java.util.Map">
+        <result property="id" column="id"/>
+        <result property="gameId" column="game_id"/>
+        <result property="name" column="name"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="platformCode" column="platform_code"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="detailUrl" column="detail_url"/>
+        <result property="eventUrl" column="event_url"/>
+        <result property="tip" column="tip"/>
+        <collection ofType="java.util.Map" property="reward"
+                    javaType="java.util.ArrayList">
+            <result property="code" column="reward_code"/>
+            <result property="num" column="reward_num"/>
+        </collection>
+    </resultMap>
+
     <!--活动列表-->
-    <select id="getEventList" resultType="map">
-        SELECT id,
+    <select id="getEventList" resultMap="EventResultMap">
+        SELECT e.id,
         game_id,
         name,
         start_time,
@@ -30,8 +49,10 @@
         img_url,
         detail_url,
         event_url,
-        tip
-        FROM calendar_event e
+        tip,
+        r.reward_code,
+        r.reward_num
+        FROM calendar_event e left join calendar_event_reward r on e.id = r.event_id
         where 1=1
         and e.END_TIME >= DATE_ADD( CURRENT_time(), INTERVAL -3 DAY )
         <if test="array!= null and array.length >0">
