@@ -1,6 +1,8 @@
 package io.oken1.modules.calendar.controller;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.swagger.annotations.Api;
@@ -13,7 +15,6 @@ import io.oken1.modules.calendar.entity.CalendarEventPlatformEntity;
 import io.oken1.modules.calendar.service.CalendarEventPlatformService;
 import io.oken1.common.utils.PageUtils;
 import io.oken1.common.utils.R;
-
 
 
 /**
@@ -36,7 +37,7 @@ public class CalendarEventPlatformController {
     @ApiOperation("列表")
     @PostMapping("/list")
     // @RequiresPermissions("calendar:calendareventplatform:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = calendarEventPlatformService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -49,8 +50,8 @@ public class CalendarEventPlatformController {
     @ApiOperation("信息")
     @GetMapping("/info/{id}")
     // @RequiresPermissions("calendar:calendareventplatform:info")
-    public R info(@PathVariable("id") String id){
-		CalendarEventPlatformEntity calendarEventPlatform = calendarEventPlatformService.getById(id);
+    public R info(@PathVariable("id") String id) {
+        CalendarEventPlatformEntity calendarEventPlatform = calendarEventPlatformService.getById(id);
 
         return R.ok().put("calendarEventPlatform", calendarEventPlatform);
     }
@@ -61,8 +62,8 @@ public class CalendarEventPlatformController {
     @ApiOperation("保存")
     @PostMapping("/save")
     // @RequiresPermissions("calendar:calendareventplatform:save")
-    public R save(@RequestBody CalendarEventPlatformEntity calendarEventPlatform){
-		calendarEventPlatformService.save(calendarEventPlatform);
+    public R save(@RequestBody CalendarEventPlatformEntity calendarEventPlatform) {
+        calendarEventPlatformService.save(calendarEventPlatform);
 
         return R.ok();
     }
@@ -73,8 +74,8 @@ public class CalendarEventPlatformController {
     @ApiOperation("修改")
     @PostMapping("/update")
     // @RequiresPermissions("calendar:calendareventplatform:update")
-    public R update(@RequestBody CalendarEventPlatformEntity calendarEventPlatform){
-		calendarEventPlatformService.updateById(calendarEventPlatform);
+    public R update(@RequestBody CalendarEventPlatformEntity calendarEventPlatform) {
+        calendarEventPlatformService.updateById(calendarEventPlatform);
 
         return R.ok();
     }
@@ -85,10 +86,20 @@ public class CalendarEventPlatformController {
     @ApiOperation("删除")
     @PostMapping("/delete")
     // @RequiresPermissions("calendar:calendareventplatform:delete")
-    public R delete(@RequestBody String[] ids){
-		calendarEventPlatformService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody String[] ids) {
+        calendarEventPlatformService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }
 
+    /**
+     * 列表
+     */
+    @ApiOperation("平台列表")
+    @GetMapping("/platformList")
+    public R gameList() {
+        List<LinkedHashMap> data = calendarEventPlatformService.getPlatformList();
+
+        return R.ok().put("data", data);
+    }
 }

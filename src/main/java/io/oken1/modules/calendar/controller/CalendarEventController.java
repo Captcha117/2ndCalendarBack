@@ -5,6 +5,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.oken1.modules.calendar.entity.CalendarEventRewardEntity;
+import io.oken1.modules.calendar.model.EventModel;
+import io.oken1.modules.calendar.service.CalendarEventRewardService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -15,6 +18,8 @@ import io.oken1.modules.calendar.entity.CalendarEventEntity;
 import io.oken1.modules.calendar.service.CalendarEventService;
 import io.oken1.common.utils.PageUtils;
 import io.oken1.common.utils.R;
+
+import static io.oken1.common.utils.MyUtils.*;
 
 
 /**
@@ -30,6 +35,8 @@ import io.oken1.common.utils.R;
 public class CalendarEventController {
     @Autowired
     private CalendarEventService calendarEventService;
+    @Autowired
+    private CalendarEventRewardService calendarEventRewardService;
 
     /**
      * 列表
@@ -37,7 +44,7 @@ public class CalendarEventController {
     @ApiOperation("列表")
     @PostMapping("/list")
     // @RequiresPermissions("calendar:calendarevent:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public R list(@RequestBody Map<String, Object> params) {
         PageUtils page = calendarEventService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -88,6 +95,27 @@ public class CalendarEventController {
     // @RequiresPermissions("calendar:calendarevent:delete")
     public R delete(@RequestBody String[] ids) {
         calendarEventService.removeByIds(Arrays.asList(ids));
+
+        return R.ok();
+    }
+
+
+    /**
+     * 保存
+     */
+    @ApiOperation("保存")
+    @PostMapping("/saveEvent")
+    // @RequiresPermissions("calendar:calendarevent:saveEvent")
+    public R saveEvent(@RequestBody EventModel event) {
+//        String eventId = myUUID();
+//        event.setId(eventId);
+        calendarEventService.save(event);
+//        List<CalendarEventRewardEntity> rewardList = event.getRewardList();
+//        rewardList.forEach(x -> {
+//            x.setEventId(eventId);
+//            x.setId(myUUID());
+//        });
+//        calendarEventRewardService.saveBatch(rewardList);
 
         return R.ok();
     }

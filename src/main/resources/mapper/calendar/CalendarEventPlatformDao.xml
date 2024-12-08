@@ -10,5 +10,9 @@
         <result property="code" column="code"/>
     </resultMap>
 
-
+    <!--平台列表-->
+    <select id="getPlatformList" resultType="map">
+        select id, name, code
+        from calendar_event_platform
+    </select>
 </mapper>

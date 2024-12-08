@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import io.oken1.common.utils.PageUtils;
 import io.oken1.modules.calendar.entity.CalendarEventPlatformEntity;
 
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +18,7 @@ import java.util.Map;
 public interface CalendarEventPlatformService extends IService<CalendarEventPlatformEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    List<LinkedHashMap> getPlatformList();
 }
 

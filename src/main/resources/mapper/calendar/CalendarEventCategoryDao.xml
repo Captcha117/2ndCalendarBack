@@ -3,7 +3,7 @@
 
 <mapper namespace="io.oken1.modules.calendar.dao.CalendarEventCategoryDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="io.oken1.modules.calendar.entity.CalendarEventCategoryEntity" id="calendarEventCategoryMap">
         <result property="id" column="id"/>
         <result property="gameId" column="game_id"/>
@@ -11,5 +11,9 @@
         <result property="code" column="code"/>
     </resultMap>
 
-
+    <!--类目列表-->
+    <select id="getCategoryList" resultType="map">
+        select id, name, code
+        from calendar_event_category c where c.game_id = #{gameId}
+    </select>
 </mapper>

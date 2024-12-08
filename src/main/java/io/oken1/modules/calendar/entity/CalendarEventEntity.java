@@ -1,5 +1,6 @@
 package io.oken1.modules.calendar.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -9,7 +10,7 @@ import lombok.Data;
 
 /**
  * 活动
- * 
+ *
  * @author oken1
  * @email /
  * @date 2024-11-24 00:49:42
@@ -22,7 +23,7 @@ public class CalendarEventEntity implements Serializable {
 	/**
 	 * 活动id
 	 */
-	@TableId
+    @TableId(type = IdType.ASSIGN_UUID)
 	private String id;
 	/**
 	 * 游戏id

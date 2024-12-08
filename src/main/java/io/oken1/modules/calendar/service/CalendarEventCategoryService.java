@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import io.oken1.common.utils.PageUtils;
 import io.oken1.modules.calendar.entity.CalendarEventCategoryEntity;
 
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +18,7 @@ import java.util.Map;
 public interface CalendarEventCategoryService extends IService<CalendarEventCategoryEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    List<LinkedHashMap> getCategoryList(String gameId);
 }
 
