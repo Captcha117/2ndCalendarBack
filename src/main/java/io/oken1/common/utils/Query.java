@@ -19,6 +19,22 @@ public class Query<T> {
         return this.getPage(params, null, false);
     }
 
+    public Page<T> getMyPage(Map<String, Object> params) {
+        long curPage = 1;
+        long limit = 10;
+
+        if(params.get(Constant.PAGE) != null){
+            curPage = Long.parseLong((String)params.get(Constant.PAGE));
+        }
+        if(params.get(Constant.LIMIT) != null){
+            limit = Long.parseLong((String)params.get(Constant.LIMIT));
+        }
+
+        //分页对象
+        Page<T> page = new Page<>(curPage, limit);
+        return page;
+    }
+
     public IPage<T> getPage(Map<String, Object> params, String defaultOrderField, boolean isAsc) {
         //分页参数
         long curPage = 1;

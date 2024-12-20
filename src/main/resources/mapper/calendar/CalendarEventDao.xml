@@ -22,10 +22,13 @@
         <result property="id" column="id"/>
         <result property="gameId" column="game_id"/>
         <result property="name" column="name"/>
+        <result property="gameName" column="game_name"/>
         <result property="startTime" column="start_time"/>
         <result property="endTime" column="end_time"/>
         <result property="platformCode" column="platform_code"/>
+        <result property="platformName" column="platform_name"/>
         <result property="categoryId" column="category_id"/>
+        <result property="categoryName" column="category_name"/>
         <result property="imgUrl" column="img_url"/>
         <result property="detailUrl" column="detail_url"/>
         <result property="eventUrl" column="event_url"/>
@@ -37,15 +40,17 @@
         </collection>
     </resultMap>
 
-    <!--活动列表-->
-    <select id="getEventList" resultMap="EventResultMap">
+    <sql id="baseSql">
         SELECT e.id,
-        game_id,
-        name,
+        e.game_id,
+        g.name game_name,
+        e.name,
         start_time,
         end_time,
         platform_code,
+        p.name platform_name,
         category_id,
+        e.name category_name,
         img_url,
         detail_url,
         event_url,
@@ -53,6 +58,20 @@
         r.reward_code,
         r.reward_num
         FROM calendar_event e left join calendar_event_reward r on e.id = r.event_id
+        left join calendar_game g on e.game_id = g.id
+        left join calendar_event_platform p on p.code = e.platform_code
+        left join calendar_event_category c on c.id = e.category_id
+    </sql>
+
+    <!--活动列表-->
+    <select id="getPageEventList" resultMap="EventResultMap">
+        <include refid="baseSql"></include>
+        ${ew.customSqlSegment}
+        ORDER BY e.end_time
+    </select>
+
+    <select id="getEventListByGameIds" resultMap="EventResultMap">
+        <include refid="baseSql"></include>
         where 1=1
         and e.END_TIME >= DATE_ADD( CURRENT_time(), INTERVAL -3 DAY )
         <if test="array!= null and array.length >0">

@@ -121,12 +121,24 @@ public class CalendarEventController {
     }
 
     /**
-     * 列表
+     * 活动分页列表
      */
-    @ApiOperation("活动列表")
+    @ApiOperation("活动分页列表")
     @PostMapping("/eventList")
-    public R eventList(@RequestBody String[] ids) {
-        List<LinkedHashMap> data = calendarEventService.getByIds(ids);
+    public R eventPageList(@RequestBody Map<String, Object> params) {
+        PageUtils data = calendarEventService.getPageList(params);
+
+        return R.ok().put("data", data);
+    }
+
+
+    /**
+     * 活动分页列表
+     */
+    @ApiOperation("根据游戏id活动分页列表")
+    @PostMapping("/eventListByGameIds")
+    public R eventListByGameIds(@RequestBody String[] ids) {
+        List<EventModel> data = calendarEventService.getByIds(ids);
 
         return R.ok().put("data", data);
     }

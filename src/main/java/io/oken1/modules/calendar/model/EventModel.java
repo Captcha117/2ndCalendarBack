@@ -14,6 +14,12 @@ import java.util.List;
 public class EventModel extends CalendarEventEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private String gameName;
+
+    private String platformName;
+
+    private String categoryName;
+
     private List<CalendarEventRewardEntity> rewardList;
 
 }
