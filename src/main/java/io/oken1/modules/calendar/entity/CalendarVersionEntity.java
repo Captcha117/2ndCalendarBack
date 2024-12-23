@@ -1,5 +1,6 @@
 package io.oken1.modules.calendar.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -22,7 +23,7 @@ public class CalendarVersionEntity implements Serializable {
 	/**
 	 * 版本id
 	 */
-	@TableId
+	@TableId(type = IdType.ASSIGN_UUID)
 	private String id;
 	/**
 	 * 版本名 1.0.0

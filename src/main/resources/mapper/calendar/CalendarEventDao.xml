@@ -50,7 +50,7 @@
         platform_code,
         p.name platform_name,
         category_id,
-        e.name category_name,
+        c.name category_name,
         img_url,
         detail_url,
         event_url,
@@ -67,7 +67,7 @@
     <select id="getPageEventList" resultMap="EventResultMap">
         <include refid="baseSql"></include>
         ${ew.customSqlSegment}
-        ORDER BY e.end_time
+        ORDER BY e.end_time DESC
     </select>
 
     <select id="getEventListByGameIds" resultMap="EventResultMap">

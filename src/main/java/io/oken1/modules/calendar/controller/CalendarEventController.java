@@ -124,18 +124,18 @@ public class CalendarEventController {
      * 活动分页列表
      */
     @ApiOperation("活动分页列表")
-    @PostMapping("/eventList")
+    @PostMapping("/eventPageList")
     public R eventPageList(@RequestBody Map<String, Object> params) {
         PageUtils data = calendarEventService.getPageList(params);
 
-        return R.ok().put("data", data);
+        return R.ok().put("page", data);
     }
 
 
     /**
      * 活动分页列表
      */
-    @ApiOperation("根据游戏id活动分页列表")
+    @ApiOperation("根据游戏id获取活动列表")
     @PostMapping("/eventListByGameIds")
     public R eventListByGameIds(@RequestBody String[] ids) {
         List<EventModel> data = calendarEventService.getByIds(ids);
