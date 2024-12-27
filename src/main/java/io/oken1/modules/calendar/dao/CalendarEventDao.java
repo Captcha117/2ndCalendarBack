@@ -26,4 +26,6 @@ public interface CalendarEventDao extends BaseMapper<CalendarEventEntity> {
     IPage<EventModel> getPageEventList(Page<EventModel> page, @Param(Constants.WRAPPER) QueryWrapper<EventModel> wrapper);
 
     List<EventModel> getEventListByGameIds(String[] ids);
+
+    EventModel getEventById(String id);
 }

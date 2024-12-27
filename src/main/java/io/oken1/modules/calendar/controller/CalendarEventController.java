@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.oken1.modules.calendar.dao.CalendarEventDao;
 import io.oken1.modules.calendar.entity.CalendarEventRewardEntity;
 import io.oken1.modules.calendar.model.EventModel;
 import io.oken1.modules.calendar.service.CalendarEventRewardService;
@@ -37,6 +38,8 @@ public class CalendarEventController {
     private CalendarEventService calendarEventService;
     @Autowired
     private CalendarEventRewardService calendarEventRewardService;
+    @Autowired
+    private CalendarEventDao calendarEventDao;
 
     /**
      * 列表
@@ -58,9 +61,10 @@ public class CalendarEventController {
     @GetMapping("/info/{id}")
     // @RequiresPermissions("calendar:calendarevent:info")
     public R info(@PathVariable("id") String id) {
-        CalendarEventEntity calendarEvent = calendarEventService.getById(id);
-
-        return R.ok().put("calendarEvent", calendarEvent);
+//        CalendarEventEntity calendarEvent = calendarEventService.getById(id);
+//        List<CalendarEventRewardEntity> reward = calendarEventRewardService.getRewardListByEventId(id);
+        EventModel model = calendarEventDao.getEventById(id);
+        return R.ok().put("calendarEvent", model);
     }
 
     /**

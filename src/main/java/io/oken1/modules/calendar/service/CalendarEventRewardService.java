@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import io.oken1.common.utils.PageUtils;
 import io.oken1.modules.calendar.entity.CalendarEventRewardEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface CalendarEventRewardService extends IService<CalendarEventRewardEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    List<CalendarEventRewardEntity> getRewardListByEventId(String eventId);
 }
 

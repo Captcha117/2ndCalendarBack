@@ -3,7 +3,7 @@
 
 <mapper namespace="io.oken1.modules.calendar.dao.CalendarEventRewardDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="io.oken1.modules.calendar.entity.CalendarEventRewardEntity" id="calendarEventRewardMap">
         <result property="id" column="id"/>
         <result property="eventId" column="event_id"/>
@@ -11,5 +11,11 @@
         <result property="rewardNum" column="reward_num"/>
     </resultMap>
 
+    <!--根据活动id获取奖励-->
+    <select id="getRewardListByEventId" resultMap="calendarEventRewardMap">
+        select id, event_id, reward_code, reward_num
+        from calendar_event_reward r
+        where r.event_id = #{eventId}
+    </select>
 
 </mapper>

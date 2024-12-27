@@ -1,8 +1,10 @@
 package io.oken1.modules.calendar.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import io.oken1.modules.calendar.entity.CalendarEventRewardEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -91,4 +93,15 @@ public class CalendarGameRewardController {
         return R.ok();
     }
 
+    /**
+     * 根据游戏id获取奖励列表
+     */
+    @ApiOperation("根据游戏id获取类目列表")
+    @GetMapping("/getRewardListByGameId")
+    // @RequiresPermissions("calendar:calendareventcategory:categoryList")
+    public R getRewardListByGameId(@RequestParam String gameId) {
+        List<CalendarEventRewardEntity> data = calendarGameRewardService.getRewardListByGameId(gameId);
+
+        return R.ok().put("data", data);
+    }
 }
