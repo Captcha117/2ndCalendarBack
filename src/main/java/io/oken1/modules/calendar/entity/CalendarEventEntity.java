@@ -62,6 +62,10 @@ public class CalendarEventEntity implements Serializable {
 	 */
 	private String eventUrl;
 	/**
+	 * 活动描述
+	 */
+	private String description;
+	/**
 	 * 提示
 	 */
 	private String tip;

@@ -140,7 +140,7 @@ public class CalendarEventController {
 
 
     /**
-     * 活动分页列表
+     * 根据游戏id获取活动列表
      */
     @ApiOperation("根据游戏id获取活动列表")
     @PostMapping("/eventListByGameIds")
