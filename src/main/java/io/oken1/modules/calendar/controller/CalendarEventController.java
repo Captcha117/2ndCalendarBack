@@ -85,8 +85,13 @@ public class CalendarEventController {
     @ApiOperation("修改")
     @PostMapping("/update")
     // @RequiresPermissions("calendar:calendarevent:update")
-    public R update(@RequestBody CalendarEventEntity calendarEvent) {
+    public R update(@RequestBody EventModel calendarEvent) {
+        List<CalendarEventRewardEntity> rewardList = calendarEvent.getRewardList();
+        rewardList.forEach(x -> x.setEventId(calendarEvent.getId()));
+        calendarEventRewardService.deleteRewardByEventId(calendarEvent.getId());
+
         calendarEventService.updateById(calendarEvent);
+        calendarEventRewardService.saveBatch(rewardList);
 
         return R.ok();
     }
@@ -111,8 +116,6 @@ public class CalendarEventController {
     @PostMapping("/saveEvent")
     // @RequiresPermissions("calendar:calendarevent:saveEvent")
     public R saveEvent(@RequestBody EventModel event) {
-//        String eventId = myUUID();
-//        event.setId(eventId);
         calendarEventService.save(event);
 //        List<CalendarEventRewardEntity> rewardList = event.getRewardList();
 //        rewardList.forEach(x -> {

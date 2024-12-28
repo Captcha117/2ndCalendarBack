@@ -38,4 +38,9 @@ public class CalendarEventRewardServiceImpl extends ServiceImpl<CalendarEventRew
         return calendarEventRewardDao.getRewardListByEventId(eventId);
     }
 
+    @Override
+    public void deleteRewardByEventId(String eventId) {
+        calendarEventRewardDao.deleteRewardByEventId(eventId);
+    }
+
 }

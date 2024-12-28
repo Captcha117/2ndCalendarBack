@@ -17,4 +17,6 @@ import java.util.List;
 public interface CalendarEventRewardDao extends BaseMapper<CalendarEventRewardEntity> {
 
     List<CalendarEventRewardEntity> getRewardListByEventId(String eventId);
+
+    void deleteRewardByEventId(String eventId);
 }

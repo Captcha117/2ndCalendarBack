@@ -35,9 +35,9 @@
         <result property="tip" column="tip"/>
         <collection ofType="java.util.Map" property="rewardList"
                     javaType="java.util.ArrayList">
-            <result property="code" column="reward_code"/>
-            <result property="num" column="reward_num"/>
-            <result property="name" column="reward_name"/>
+            <result property="rewardCode" column="reward_code"/>
+            <result property="rewardNum" column="reward_num"/>
+            <result property="rewardName" column="reward_name"/>
         </collection>
     </resultMap>
 

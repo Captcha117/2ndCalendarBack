@@ -18,4 +18,9 @@
         where r.event_id = #{eventId}
     </select>
 
+    <delete id="deleteRewardByEventId">
+        DELETE
+        FROM calendar_event_reward
+        WHERE event_id = #{eventId}
+    </delete>
 </mapper>

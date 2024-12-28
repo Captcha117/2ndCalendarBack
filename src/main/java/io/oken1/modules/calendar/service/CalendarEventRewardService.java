@@ -19,5 +19,7 @@ public interface CalendarEventRewardService extends IService<CalendarEventReward
     PageUtils queryPage(Map<String, Object> params);
 
     List<CalendarEventRewardEntity> getRewardListByEventId(String eventId);
+
+    void deleteRewardByEventId(String eventId);
 }
 
