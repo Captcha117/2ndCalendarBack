@@ -6,11 +6,12 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import lombok.Data;
 
 /**
  * 游戏
- * 
+ *
  * @author oken1
  * @email /
  * @date 2024-11-24 00:49:42
@@ -18,20 +19,24 @@ import lombok.Data;
 @Data
 @TableName("calendar_game")
 public class CalendarGameEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 游戏id
-	 */
-	@TableId(type = IdType.ASSIGN_UUID)
-	private String id;
-	/**
-	 * 游戏名称
-	 */
-	private String name;
-	/**
-	 * 游戏code
-	 */
-	private String code;
+    /**
+     * 游戏id
+     */
+    @TableId(type = IdType.ASSIGN_UUID)
+    private String id;
+    /**
+     * 游戏名称
+     */
+    private String name;
+    /**
+     * 游戏code
+     */
+    private String code;
+    /**
+     * 颜色
+     */
+    private String color;
 
 }

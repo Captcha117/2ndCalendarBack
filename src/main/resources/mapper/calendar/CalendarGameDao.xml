@@ -8,11 +8,12 @@
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="code" column="code"/>
+        <result property="color" column="color"/>
     </resultMap>
 
     <!--游戏列表-->
     <select id="getGameList" resultType="map">
-        select id, name, code
+        select id, name, code, color
         from calendar_game g
     </select>
 
