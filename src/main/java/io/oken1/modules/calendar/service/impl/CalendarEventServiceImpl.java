@@ -1,5 +1,6 @@
 package io.oken1.modules.calendar.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.oken1.modules.calendar.model.EventModel;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -43,7 +45,12 @@ public class CalendarEventServiceImpl extends ServiceImpl<CalendarEventDao, Cale
         // 注意：一定要手动关闭 SQL 优化，不然查询总数的时候只会查询主表
         page.setOptimizeCountSql(false);
         QueryWrapper<EventModel> queryWrapper = new QueryWrapper<>();
-//        queryWrapper.eq("e.game_id", "0a49b2bda7f211ef80c47c8ae194797e");
+        if (!StrUtil.isEmptyOrUndefined(Objects.toString(params.get("gameId"), ""))) {
+            queryWrapper.eq("e.game_id", params.get("gameId"));
+        }
+        if (!StrUtil.isEmptyOrUndefined(Objects.toString(params.get("categoryId"), ""))) {
+            queryWrapper.eq("e.category_id", params.get("categoryId"));
+        }
 
         IPage<EventModel> page1 = calendarEventDao.getPageEventList(page, queryWrapper);
 
