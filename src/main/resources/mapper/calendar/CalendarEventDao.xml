@@ -80,8 +80,8 @@
     <select id="getEventListByGameIds" resultMap="EventResultMap">
         <include refid="baseSql"></include>
         where 1=1
-        and e.END_TIME >= DATE_ADD( CURRENT_time(), INTERVAL -2 DAY )
-        and DATE_ADD( CURRENT_time(), INTERVAL 6 DAY ) >= e.START_TIME
+        and e.END_TIME >= DATE_ADD( CURRENT_TIMESTAMP(), INTERVAL -2 DAY )
+        and DATE_ADD( CURRENT_TIMESTAMP(), INTERVAL 6 DAY ) >= e.START_TIME
         <if test="array!= null and array.length >0">
             and e.game_id in
             <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
