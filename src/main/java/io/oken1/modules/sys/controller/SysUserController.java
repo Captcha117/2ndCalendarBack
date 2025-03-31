@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+import static io.oken1.common.utils.LoginUtils.getOpenId;
+
 /**
  * 系统用户
  *
@@ -143,5 +145,11 @@ public class SysUserController extends AbstractController {
 		sysUserService.deleteBatch(userIds);
 		
 		return R.ok();
+	}
+
+	@PostMapping("/login")
+	public R login(@RequestBody String loginCode) {
+		String openId = getOpenId(loginCode);
+		return R.ok().put("openId", openId);
 	}
 }
