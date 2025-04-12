@@ -68,6 +68,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 	}
 
 	@Override
+	public SysUserEntity queryByOpenId(String openId) {
+		return baseMapper.queryByOpenId(openId);
+	}
+
+	@Override
 	@Transactional
 	public void saveUser(SysUserEntity user) {
 		user.setCreateTime(new Date());

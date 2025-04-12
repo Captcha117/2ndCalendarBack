@@ -1,5 +1,6 @@
 package io.oken1.modules.sys.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -26,7 +27,7 @@ public class SysUserEntity implements Serializable {
 	/**
 	 * 用户ID
 	 */
-	@TableId
+	@TableId(type = IdType.AUTO)
 	private Long userId;
 
 	/**
@@ -49,7 +50,7 @@ public class SysUserEntity implements Serializable {
 	/**
 	 * 邮箱
 	 */
-	@NotBlank(message="邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
+//	@NotBlank(message="邮箱不能为空", groups = {AddGroup.class, UpdateGroup.class})
 	@Email(message="邮箱格式不正确", groups = {AddGroup.class, UpdateGroup.class})
 	private String email;
 
@@ -79,4 +80,8 @@ public class SysUserEntity implements Serializable {
 	 */
 	private Date createTime;
 
+	/**
+	 * 微信openId
+	 */
+	private String openId;
 }

@@ -146,10 +146,4 @@ public class SysUserController extends AbstractController {
 		
 		return R.ok();
 	}
-
-	@PostMapping("/login")
-	public R login(@RequestBody String loginCode) {
-		String openId = getOpenId(loginCode);
-		return R.ok().put("openId", openId);
-	}
 }
