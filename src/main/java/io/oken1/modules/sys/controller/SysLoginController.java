@@ -106,6 +106,9 @@ public class SysLoginController extends AbstractController {
     @PostMapping("/sys/wx/login")
     public R wxLogin(@RequestBody String loginCode) {
         String openId = getOpenId(loginCode);
+        if (StringUtils.isBlank(openId)) {
+            return R.error();
+        }
         // 用户表找openid
         SysUserEntity user = sysUserService.queryByOpenId(openId);
         // 没有找到，则注册
@@ -134,7 +137,7 @@ public class SysLoginController extends AbstractController {
 //        }
 
         Map<String, Object> obj = new HashMap<>();
-        obj.put("id",user.getUserId());
+        obj.put("id", user.getUserId());
         obj.put("name", user.getUsername());
         obj.put("email", user.getEmail());
         obj.put("mobile", user.getMobile());
