@@ -35,8 +35,15 @@ public class CalendarGameEntity implements Serializable {
      */
     private String code;
     /**
+     * 图标
+     */
+    private String icon;
+    /**
      * 颜色
      */
     private String color;
-
+    /**
+     * 排序
+     */
+    private Integer sort;
 }

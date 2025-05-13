@@ -8,13 +8,16 @@
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="code" column="code"/>
+        <result property="icon" column="icon"/>
         <result property="color" column="color"/>
+        <result property="sort" column="sort"/>
     </resultMap>
 
     <!--游戏列表-->
     <select id="getGameList" resultType="map">
-        select id, name, code, color
+        select id, name, code, icon, color, sort
         from calendar_game g
+        order by sort
     </select>
 
 </mapper>
